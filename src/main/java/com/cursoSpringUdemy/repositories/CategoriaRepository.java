@@ -9,7 +9,7 @@ import javax.persistence.criteria.CriteriaBuilder;
 //categoria Repository e o objeto da camada de acesso a dados
 
 @RestController
-public interface CategoriaRepository extends JpaRepository<Categoria ,Integer> {
+public interface CategoriaRepository extends JpaRepository<Categoria ,Long> {
 
 
 }

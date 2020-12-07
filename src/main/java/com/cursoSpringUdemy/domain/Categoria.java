@@ -9,23 +9,20 @@ import java.io.Serializable;
 public class Categoria implements Serializable {
     public static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//geracao de chave primaria
-    private int id;
+    @GeneratedValue(strategy = GenerationType.AUTO)//geracao de chave primaria
+    private Long id;
     private String name;//parei aki
 
-    public Categoria() {
-    }
-
-    public Categoria(int id, String name) {
+    public Categoria(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
@@ -44,11 +41,14 @@ public class Categoria implements Serializable {
 
         Categoria categoria = (Categoria) o;
 
-        return id == categoria.id;
+        if (id != null ? !id.equals(categoria.id) : categoria.id != null) return false;
+        return name != null ? name.equals(categoria.name) : categoria.name == null;
     }
 
     @Override
     public int hashCode() {
-        return id;
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        return result;
     }
 }

@@ -13,7 +13,7 @@ public class CategoriaService {
     //operacao capaz de buscar uma categoria por codigo
     @Autowired
     private CategoriaRepository repo;
-    public Categoria buscar(Integer id){
+    public Categoria buscar(Long id){
         Optional<Categoria> obj= repo.findById(id);
         return obj.orElse(null);
 
