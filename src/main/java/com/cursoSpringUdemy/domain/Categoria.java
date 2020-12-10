@@ -1,17 +1,31 @@
 package com.cursoSpringUdemy.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+
 @Entity
 public class Categoria implements Serializable {
     public static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)//geracao de chave primaria
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//geracao de chave primaria
     private Long id;
     private String name;//parei aki
+    private List<Produto> produtos = new ArrayList<>();//iniciando a colecao produtos
+    @ManyToMany(mappedBy = "categorias")//muitos para muitos dos dois lados
+
+   public List<Produto> getProdutos() {
+        return produtos;
+    }
+
+    public void setProdutos(List<Produto> produtos) {
+        this.produtos = produtos;
+    }
+
+
+    public Categoria() {
+    }
 
     public Categoria(Long id, String name) {
         this.id = id;
