@@ -1,24 +1,21 @@
-package com.cursoSpringUdemy.services;
-
-
-import com.cursoSpringUdemy.domain.Categoria;
-import com.cursoSpringUdemy.repositories.CategoriaRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+package com.nelioalves.cursomc.services;
 
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.nelioalves.cursomc.domain.Categoria;
+import com.nelioalves.cursomc.repositories.CategoriaRepository;
+
 @Service
 public class CategoriaService {
-    //operacao capaz de buscar uma categoria por codigo
-    @Autowired
-    private CategoriaRepository repo;
-
-    public Categoria buscar(Long id){
-        Optional<Categoria> obj= repo.findById(id);
-        return obj.orElse(null);
-
-
-    }
-
+	
+	@Autowired
+	private CategoriaRepository repo;
+	
+	public Categoria find(Integer id) {
+		Optional<Categoria> obj = repo.findById(id);
+		return obj.orElse(null);
+	}
 }

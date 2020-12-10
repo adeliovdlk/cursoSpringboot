@@ -1,16 +1,11 @@
-package com.cursoSpringUdemy.repositories;
+package com.nelioalves.cursomc.repositories;
 
-import com.cursoSpringUdemy.domain.Categoria;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-//categoria Repository e o objeto da camada de acesso a dados
-
+import com.nelioalves.cursomc.domain.Categoria;
 
 @Repository
-public interface CategoriaRepository extends JpaRepository<Categoria ,Long> {
-
+public interface CategoriaRepository extends JpaRepository<Categoria, Integer> {
 
 }
-
-

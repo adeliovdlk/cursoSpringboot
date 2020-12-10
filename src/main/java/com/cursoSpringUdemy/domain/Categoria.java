@@ -1,68 +1,82 @@
-package com.cursoSpringUdemy.domain;
+package com.nelioalves.cursomc.domain;
 
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+
 @Entity
 public class Categoria implements Serializable {
-    public static final long serialVersionUID = 1L;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)//geracao de chave primaria
-    private Long id;
-    private String name;//parei aki
-    private List<Produto> produtos = new ArrayList<>();//iniciando a colecao produtos
-    @ManyToMany(mappedBy = "categorias")//muitos para muitos dos dois lados
+	private static final long serialVersionUID = 1L;
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	private String nome;
+	
+	@ManyToMany(mappedBy="categorias")
+	private List<Produto> produtos = new ArrayList<>();
+	
+	public Categoria() {
+	}
 
-   public List<Produto> getProdutos() {
-        return produtos;
-    }
+	public Categoria(Integer id, String nome) {
+		super();
+		this.id = id;
+		this.nome = nome;
+	}
 
-    public void setProdutos(List<Produto> produtos) {
-        this.produtos = produtos;
-    }
+	public Integer getId() {
+		return id;
+	}
 
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
-    public Categoria() {
-    }
+	public String getNome() {
+		return nome;
+	}
 
-    public Categoria(Long id, String name) {
-        this.id = id;
-        this.name = name;
-    }
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
 
-    public Long getId() {
-        return id;
-    }
+	public List<Produto> getProdutos() {
+		return produtos;
+	}
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public void setProdutos(List<Produto> produtos) {
+		this.produtos = produtos;
+	}
 
-    public String getName() {
-        return name;
-    }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Categoria categoria = (Categoria) o;
-
-        if (id != null ? !id.equals(categoria.id) : categoria.id != null) return false;
-        return name != null ? name.equals(categoria.name) : categoria.name == null;
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        return result;
-    }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Categoria other = (Categoria) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
+	}
 }
